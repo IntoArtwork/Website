@@ -251,26 +251,37 @@
         
         
    
-     /* Custom styles for navigation arrows */
-        .tp-leftarrow, .tp-rightarrow {
-            width: 50px;
-            height: 50px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            border: none; /* Remove any borders */
-            box-shadow: none; /* Remove any shadows */
-            background-color: transparent; /* Ensure no background color */
-        }
+    /* Custom styles for navigation arrows */
+.tp-leftarrow, .tp-rightarrow {
+    width: 50px;
+    height: 50px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none; /* Remove any borders */
+    box-shadow: none; /* Remove any shadows */
+    background-color: transparent !important; /* Ensure no background color */
+    opacity: 1 !important; /* Ensure full visibility */
+    transition: opacity 0.3s ease, background-color 0.3s ease; /* Smooth transition for visibility changes */
+}
 
-        .tp-leftarrow {
-            background-image: url('include/rs-plugin/demos/assets/images/arrowl.png') !important;
-        }
+/* Specific background images for arrows */
+.tp-leftarrow {
+    background-image: url('include/rs-plugin/demos/assets/images/arrowl.png') !important;
+}
 
-        .tp-rightarrow {
-            background-image: url('include/rs-plugin/demos/assets/images/arrowl.png') !important;
-            transform: rotate(180deg); /* Rotate the right arrow to point in the opposite direction */
-        }
+.tp-rightarrow {
+    background-image: url('include/rs-plugin/demos/assets/images/arrowl.png') !important;
+    transform: rotate(180deg); /* Rotate the right arrow to point in the opposite direction */
+}
+
+/* Ensure no background changes on hover */
+.tp-leftarrow:hover, .tp-rightarrow:hover {
+    background-color: transparent !important; /* Ensure no background color on hover */
+    background-image: url('include/rs-plugin/demos/assets/images/arrowl.png') !important; /* Maintain the background image */
+}
+        
+        
     </style>
 
 </head>
@@ -453,129 +464,130 @@
     <script src="include/rs-plugin/js/extensions/newterm1.extension.navigation.min.js"></script>
 
     <script>
-        var tpj = jQuery;
-        var revapi202;
-        var $ = jQuery.noConflict();
+var tpj = jQuery;
+var revapi202;
+var $ = jQuery.noConflict();
 
-        tpj(document).ready(function() {
-            if (tpj("#rev_slider_202_1").newterm1 == undefined) {
-                revslider_showDoubleJqueryError("#rev_slider_202_1");
-            } else {
-                revapi202 = tpj("#rev_slider_202_1").show().newterm1({
-                    sliderType: "standard",
-                    jsFileLocation: "include/rs-plugin/js/",
-                    sliderLayout: "fullscreen",
-                    dottedOverlay: "none",
-                    delay: 9000,
-                    navigation: {
-                        keyboardNavigation: "off",
-                        keyboard_direction: "horizontal",
-                        mouseScrollNavigation: "off",
-                        onHoverStop: "off",
-                        touch: {
-                            touchenabled: "on",
-                            swipe_threshold: 75,
-                            swipe_min_touches: 50,
-                            swipe_direction: "horizontal",
-                            drag_block_vertical: false
-                        },
-                        arrows: {
-                            enable: true,
-                            hide_onmobile: false,
-                            hide_onleave: false,
-                            left: {
-                                h_align: "left",
-                                v_align: "center",
-                                h_offset: 20,
-                                v_offset: 300
-                            },
-                            right: {
-                                h_align: "right",
-                                v_align: "center",
-                                h_offset: 20,
-                                v_offset: 300
-                            }
-                        },
-                        bullets: {
-                            enable: true,
-                            hide_onmobile: false,
-                            style: "zeus",
-                            hide_onleave: false,
-                            direction: "horizontal",
-                            h_align: "center",
-                            v_align: "bottom",
-                            h_offset: 0,
-                            v_offset: 30,
-                            space: 5,
-                            tmp: '<span class="tp-bullet-image"></span><span class="tp-bullet-imageoverlay"></span><span class="tp-bullet-title">{{title}}</span>'
-                        }
+tpj(document).ready(function() {
+    if (tpj("#rev_slider_202_1").newterm1 == undefined) {
+        revslider_showDoubleJqueryError("#rev_slider_202_1");
+    } else {
+        revapi202 = tpj("#rev_slider_202_1").show().newterm1({
+            sliderType: "standard",
+            jsFileLocation: "include/rs-plugin/js/",
+            sliderLayout: "fullscreen",
+            dottedOverlay: "none",
+            delay: 9000,
+            navigation: {
+                keyboardNavigation: "off",
+                keyboard_direction: "horizontal",
+                mouseScrollNavigation: "off",
+                onHoverStop: "off",
+                touch: {
+                    touchenabled: "on",
+                    swipe_threshold: 75,
+                    swipe_min_touches: 50,
+                    swipe_direction: "horizontal",
+                    drag_block_vertical: false
+                },
+                arrows: {
+                    enable: true,
+                    hide_onmobile: false,
+                    hide_onleave: false, // Ensure arrows do not hide on leave
+                    left: {
+                        h_align: "left",
+                        v_align: "center",
+                        h_offset: 20,
+                        v_offset: 300
                     },
-                    responsiveLevels: [1240, 1024, 778, 480],
-                    visibilityLevels: [1240, 1024, 778, 480],
-                    gridwidth: [1240, 1024, 778, 480],
-                    gridheight: [868, 768, 960, 720],
-                    lazyType: "none",
-                    shadow: 0,
-                    spinner: "off",
-                    stopLoop: "on",
-                    stopAfterLoops: 0,
-                    stopAtSlide: 1,
-                    shuffle: "off",
-                    autoHeight: "off",
-                    fullScreenAutoWidth: "off",
-                    fullScreenAlignForce: "off",
-                    fullScreenOffsetContainer: "",
-                    fullScreenOffset: "",
-                    disableProgressBar: "on",
-                    hideThumbsOnMobile: "off",
-                    hideSliderAtLimit: 0,
-                    hideCaptionAtLimit: 0,
-                    hideAllCaptionAtLilmit: 0,
-                    debugMode: false,
-                    fallbacks: {
-                        simplifyAll: "off",
-                        nextSlideOnWindowFocus: "off",
-                        disableFocusListener: false,
+                    right: {
+                        h_align: "right",
+                        v_align: "center",
+                        h_offset: 20,
+                        v_offset: 300
                     }
-                });
-                revapi202.on("newterm1.slide.onchange",function (e,data) {
-                    if( $(window).width() > 992 ) {
-                        if( $('#slider ul > li').eq(data.slideIndex-1).hasClass('dark') ){
-                            $('#header.transparent-header:not(.sticky-header,.semi-transparent)').addClass('dark');
-                            $('#header.transparent-header.sticky-header,#header.transparent-header.semi-transparent.sticky-header').removeClass('dark');
-                            $('#header-wrap').removeClass('not-dark');
-                        } else {
-                            if( $('body').hasClass('dark') ) {
-                                $('#header.transparent-header:not(.semi-transparent)').removeClass('dark');
-                                $('#header.transparent-header:not(.sticky-header,.semi-transparent)').find('#header-wrap').addClass('not-dark');
-                            } else {
-                                $('#header.transparent-header:not(.semi-transparent)').removeClass('dark');
-                                $('#header-wrap').removeClass('not-dark');
-                            }
-                        }
-                        SEMICOLON.header.logo();
-                    }
-                });
-            }
-        }); /*ready*/
-        
-        document.addEventListener('DOMContentLoaded', function () {
-            const header = document.querySelector('.transparent-header');
-            const slider = document.getElementById('rev_slider_202_1_wrapper'); // Slider wrapper as the event delegation parent
-
-            // Function to toggle header visibility
-            function toggleHeader() {
-                header.style.display = (header.style.display === 'none' ? '' : 'none');
-            }
-
-            // Event delegation from the slider to favicon and close buttons
-            slider.addEventListener('click', function (e) {
-                // Check if the clicked element or any of its parents is a favicon or close button
-                if (e.target.closest('.Concept-MoreBtn img') || e.target.closest('.Concept-LessBtn')) {
-                    toggleHeader();
+                },
+                bullets: {
+                    enable: true,
+                    hide_onmobile: false,
+                    style: "zeus",
+                    hide_onleave: false,
+                    direction: "horizontal",
+                    h_align: "center",
+                    v_align: "bottom",
+                    h_offset: 0,
+                    v_offset: 30,
+                    space: 5,
+                    tmp: '<span class="tp-bullet-image"></span><span class="tp-bullet-imageoverlay"></span><span class="tp-bullet-title">{{title}}</span>'
                 }
-            });
+            },
+            responsiveLevels: [1240, 1024, 778, 480],
+            visibilityLevels: [1240, 1024, 778, 480],
+            gridwidth: [1240, 1024, 778, 480],
+            gridheight: [868, 768, 960, 720],
+            lazyType: "none",
+            shadow: 0,
+            spinner: "off",
+            stopLoop: "on",
+            stopAfterLoops: 0,
+            stopAtSlide: 1,
+            shuffle: "off",
+            autoHeight: "off",
+            fullScreenAutoWidth: "off",
+            fullScreenAlignForce: "off",
+            fullScreenOffsetContainer: "",
+            fullScreenOffset: "",
+            disableProgressBar: "on",
+            hideThumbsOnMobile: "off",
+            hideSliderAtLimit: 0,
+            hideCaptionAtLimit: 0,
+            hideAllCaptionAtLilmit: 0,
+            debugMode: false,
+            fallbacks: {
+                simplifyAll: "off",
+                nextSlideOnWindowFocus: "off",
+                disableFocusListener: false,
+            }
         });
+
+        revapi202.on("newterm1.slide.onchange", function (e, data) {
+            if ($(window).width() > 992) {
+                if ($('#slider ul > li').eq(data.slideIndex - 1).hasClass('dark')) {
+                    $('#header.transparent-header:not(.sticky-header,.semi-transparent)').addClass('dark');
+                    $('#header.transparent-header.sticky-header,#header.transparent-header.semi-transparent.sticky-header').removeClass('dark');
+                    $('#header-wrap').removeClass('not-dark');
+                } else {
+                    if ($('body').hasClass('dark')) {
+                        $('#header.transparent-header:not(.semi-transparent)').removeClass('dark');
+                        $('#header.transparent-header:not(.sticky-header,.semi-transparent)').find('#header-wrap').addClass('not-dark');
+                    } else {
+                        $('#header.transparent-header:not(.semi-transparent)').removeClass('dark');
+                        $('#header-wrap').removeClass('not-dark');
+                    }
+                }
+                SEMICOLON.header.logo();
+            }
+        });
+    }
+}); /*ready*/
+
+document.addEventListener('DOMContentLoaded', function () {
+    const header = document.querySelector('.transparent-header');
+    const slider = document.getElementById('rev_slider_202_1_wrapper'); // Slider wrapper as the event delegation parent
+
+    // Function to toggle header visibility
+    function toggleHeader() {
+        header.style.display = (header.style.display === 'none' ? '' : 'none');
+    }
+
+    // Event delegation from the slider to favicon and close buttons
+    slider.addEventListener('click', function (e) {
+        // Check if the clicked element or any of its parents is a favicon or close button
+        if (e.target.closest('.Concept-MoreBtn img') || e.target.closest('.Concept-LessBtn')) {
+            toggleHeader();
+        }
+    });
+});
         
     </script>
 

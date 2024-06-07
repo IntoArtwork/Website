@@ -14,8 +14,8 @@
 .ares.tparrows:before {
 	font-family: "revicons";
 	font-size:25px;
-	color:#aaa;
 	display:block;
+      background: transparent; /
 	line-height: 60px;
 	text-align: center;
 		-webkit-transition: color 0.3s;
