@@ -251,7 +251,7 @@
         
         
    
-    /* Custom styles for navigation arrows */
+/* Custom styles for navigation arrows */
 .tp-leftarrow, .tp-rightarrow {
     width: 50px;
     height: 50px;
@@ -586,6 +586,16 @@ document.addEventListener('DOMContentLoaded', function () {
         if (e.target.closest('.Concept-MoreBtn img') || e.target.closest('.Concept-LessBtn')) {
             toggleHeader();
         }
+    });
+
+    // Add touchstart event listener to arrows to prevent disappearing
+    const leftArrow = document.querySelector('.tp-leftarrow');
+    const rightArrow = document.querySelector('.tp-rightarrow');
+
+    [leftArrow, rightArrow].forEach(arrow => {
+        arrow.addEventListener('touchstart', function() {
+            arrow.style.opacity = 1; // Ensure arrow is fully visible on touch
+        });
     });
 });
         
