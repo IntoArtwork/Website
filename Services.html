@@ -183,30 +183,38 @@ header.scrolled .primary-menu ul li a:hover {
     color: #555;
 }
 
-@media only screen and (max-width: 992px) {
-    .transparent-header {
-        background: transparent; /* Maintain transparency */
+@media only screen and (max-width: 768px) {
+    .header-row {
+        justify-content: space-between; /* Ensures logo and menu are on opposite sides */
+        padding: 10px 5%; /* Maintain a reasonable padding */
+    }
+
+    #logo img {
+        height: 6.5vw; /* Maintain previous size setting for logo */
+        max-height: 50px; /* Maintain maximum height */
+        min-height: 35px; /* Maintain minimum height */
+    }
+
+    .primary-menu ul {
+        flex-direction: row; /* Keeps the menu horizontal */
+        align-items: center; /* Vertically centers menu items */
+    }
+
+    .primary-menu ul li {
+        margin-left: 3.9vw; /* Maintain previous spacing settings */
+        min-margin-left: 7px; /* Maintain minimum margin */
     }
 
     .primary-menu ul li a {
-        color: #fff; /* Ensure text color is white for readability */
+        font-size: 2.5vw; /* Significantly increase the base viewport width percentage for font size */
+        max-font-size: 20px; /* Increase the maximum font size */
+        min-font-size: 14px; /* Increase the minimum font size for better readability */
     }
+}
 
-    .primary-menu ul li a:hover {
-        color: #ccc;
-    }
-
-    header.scrolled {
-        background: rgba(255, 255, 255, 0.9); /* Adjust for scrolled state */
-    }
-
-    header.scrolled .primary-menu ul li a {
-        color: #333;
-    }
-
-    header.scrolled .primary-menu ul li a:hover {
-        color: #555;
-    }
+/* Ensuring transitions are smooth for properties that change */
+.header-row, .primary-menu ul li a {
+    transition: padding 0.3s ease, font-size 0.3s ease, margin 0.3s ease, height 0.3s ease; /* Adds height to the transition properties */
 }
 	</style>
 
@@ -221,7 +229,7 @@ header.scrolled .primary-menu ul li a:hover {
 		<!-- Header
 		============================================= -->
    <header class="transparent-header">
-        <div class="container">
+        <div class="container" >
             <div class="header-row">
                 <div id="logo">
                     <a href="index.html">
@@ -475,6 +483,29 @@ header.scrolled .primary-menu ul li a:hover {
 				});
 			}
 		}); /*ready*/
+        
+           document.addEventListener('DOMContentLoaded', function () {
+        const header = document.querySelector('.transparent-header');
+        const favicon = document.querySelector('.Concept-MoreBtn img');
+        const closeButton = document.querySelectorAll('.Concept-LessBtn');
+
+        // Function to toggle header visibility
+        function toggleHeader() {
+            header.style.display = (header.style.display === 'none' ? '' : 'none');
+        }
+
+        // Event listener for the favicon
+        favicon.addEventListener('click', function () {
+            toggleHeader();
+        });
+
+        // Event listeners for all close buttons
+        closeButton.forEach(button => {
+            button.addEventListener('click', function () {
+                toggleHeader();
+            });
+        });
+    });
 	</script>
 
 </body>
