@@ -570,22 +570,32 @@ tpj(document).ready(function() {
         });
     }
 }); /*ready*/
-
+        
 document.addEventListener('DOMContentLoaded', function () {
     const header = document.querySelector('.transparent-header');
     const slider = document.getElementById('rev_slider_202_1_wrapper'); // Slider wrapper as the event delegation parent
+    let isHeaderVisible = true; // Track header visibility
 
     // Function to toggle header visibility
     function toggleHeader() {
-        header.style.display = (header.style.display === 'none' ? '' : 'none');
+        isHeaderVisible = !isHeaderVisible;
+        header.style.display = isHeaderVisible ? '' : 'none';
     }
 
     // Event delegation from the slider to favicon and close buttons
     slider.addEventListener('click', function (e) {
-        // Check if the clicked element or any of its parents is a favicon or close button
-        if (e.target.closest('.Concept-MoreBtn img') || e.target.closest('.Concept-LessBtn')) {
+        const clickedElement = e.target.closest('.Concept-MoreBtn img, .Concept-LessBtn');
+        if (clickedElement) {
             toggleHeader();
         }
+    });
+
+    // Ensure header visibility on slide change
+    const revapi202 = tpj("#rev_slider_202_1");
+
+    revapi202.on("newterm1.slide.onchange", function (e, data) {
+        // Ensure the header visibility is consistent with the current state
+        header.style.display = isHeaderVisible ? '' : 'none';
     });
 
     // Add touchstart event listener to arrows to prevent disappearing
