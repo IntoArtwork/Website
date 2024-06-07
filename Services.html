@@ -484,28 +484,23 @@ header.scrolled .primary-menu ul li a:hover {
 			}
 		}); /*ready*/
         
-           document.addEventListener('DOMContentLoaded', function () {
-        const header = document.querySelector('.transparent-header');
-        const favicon = document.querySelector('.Concept-MoreBtn img');
-        const closeButton = document.querySelectorAll('.Concept-LessBtn');
+document.addEventListener('DOMContentLoaded', function () {
+    const header = document.querySelector('.transparent-header');
+    const slider = document.getElementById('rev_slider_202_1_wrapper'); // Slider wrapper as the event delegation parent
 
-        // Function to toggle header visibility
-        function toggleHeader() {
-            header.style.display = (header.style.display === 'none' ? '' : 'none');
-        }
+    // Function to toggle header visibility
+    function toggleHeader() {
+        header.style.display = (header.style.display === 'none' ? '' : 'none');
+    }
 
-        // Event listener for the favicon
-        favicon.addEventListener('click', function () {
+    // Event delegation from the slider to favicon and close buttons
+    slider.addEventListener('click', function (e) {
+        // Check if the clicked element or any of its parents is a favicon or close button
+        if (e.target.closest('.Concept-MoreBtn img') || e.target.closest('.Concept-LessBtn')) {
             toggleHeader();
-        });
-
-        // Event listeners for all close buttons
-        closeButton.forEach(button => {
-            button.addEventListener('click', function () {
-                toggleHeader();
-            });
-        });
+        }
     });
+});
 	</script>
 
 </body>
