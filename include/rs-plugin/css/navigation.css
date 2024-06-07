@@ -1,13 +1,13 @@
 
 .ares.tparrows {
-	cursor:pointer;
-	background:#fff;
-	min-width:60px;
-		min-height:60px;
-	position:absolute;
-	display:block;
-	z-index:100;
-		border-radius:50%;
+    cursor: pointer;
+    background: transparent; /* Set background to transparent */
+    min-width: 60px;
+    min-height: 60px;
+    position: absolute;
+    display: block;
+    z-index: 100;
+    border-radius: 50%;
 }
 .ares.tparrows:hover {
 }
@@ -244,7 +244,7 @@ website:    http://www.newterm2.com
 .custom.tparrows {
 	cursor:pointer;
 	background:#000;
-	background:rgba(0,0,0,0.5);
+	background:rgba(0,0,0,0);
 	width:40px;
 	height:40px;
 	position:absolute;
