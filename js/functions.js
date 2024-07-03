@@ -2249,4 +2249,46 @@ var SEMICOLON = SEMICOLON || {};
 		}, 250);
 	});
 
+// Document Ready
+document.addEventListener('DOMContentLoaded', function () {
+    const header = document.querySelector('.transparent-header');
+    const slider = document.getElementById('rev_slider_202_1_wrapper'); // Slider wrapper as the event delegation parent
+    let isHeaderVisible = true; // Track header visibility
+
+    // Function to toggle header visibility
+    function toggleHeader() {
+        // Log current state before toggling
+        console.log('Current header visibility:', isHeaderVisible);
+        
+        // Toggle visibility
+        isHeaderVisible = !isHeaderVisible;
+        header.style.display = isHeaderVisible ? '' : 'none';
+        
+        // Log new state after toggling
+        console.log('Header visibility changed to:', isHeaderVisible);
+    }
+
+    // Event listener on slider for handling clicks
+    slider.addEventListener('click', function (e) {
+        // Identify click target
+        const clickedElement = e.target.closest('.Concept-MoreBtn img, .Concept-LessBtn');
+        
+        if (clickedElement) {
+            // Perform visibility toggle
+            toggleHeader();
+        }
+    });
+
+    // Enhance arrow button interactions
+    const arrows = document.querySelectorAll('.tp-leftarrow, .tp-rightarrow');
+    arrows.forEach(arrow => {
+        arrow.addEventListener('touchstart', () => {
+            // Ensure arrow is fully visible on touch
+            arrow.style.opacity = 1;
+        });
+    });
+
+    // Debug function to manually toggle header for testing
+    window.toggleHeader = toggleHeader;
+});
 })(jQuery);
