@@ -368,6 +368,10 @@
                             <div class="tp-caption Concept-Content tp-resizeme rs-parallaxlevel-2" id="slide-672-layer-6" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['20','25','35','50']" data-width="['1000','800','480','400']" data-height="none" data-whitespace="normal" data-transform_idle="o:1;" data-transform_in="z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;s:1500;e:Power3.easeInOut;" data-transform_out="auto:auto;s:700;e:Power3.easeInOut;" data-start="bytrigger" data-splitin="none" data-splitout="none" data-responsive_offset="on" data-end="bytrigger" data-lasttriggerstate="reset" data-textAlign="center" style="z-index: 11; min-width: 1000px; max-width: 1000px; white-space: normal;text-align:center;">
                                 We leverage the latest advancements in artificial intelligence to revolutionize your business operations and drive innovation. We specialize in integrating generative AI and new technologies into your workflows, offering tailored solutions that enhance efficiency, accuracy, and creativity. Our team works closely with you to understand your unique challenges and objectives, crafting customized strategies that deliver measurable results. From automating processes to developing intelligent systems, our consultancy ensures that you stay ahead of the curve in a rapidly evolving technological landscape. Partner with us to unlock the full potential of AI and transform your vision into reality.
                                 <br/>
+                                    <br/>
+                                Bradley Ledger - Founder
+                           <br/>
+                                    <br/>
                                 <br/><a href="mailto:intoartwork@gmail.com" class="onepager-link">LET'S CONNECT! - IntoArtwork@gmail.com</a>
                             </div>
 
@@ -417,6 +421,10 @@
                             <div class="tp-caption Concept-Content tp-resizeme rs-parallaxlevel-2" id="slide-673-layer-6" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['20','25','35','50']" data-width="['1000','800','480','400']" data-height="none" data-whitespace="normal" data-transform_idle="o:1;" data-transform_in="z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;s:1500;e:Power3.easeInOut;" data-transform_out="auto:auto;s:700;e:Power3.easeInOut;" data-start="bytrigger" data-splitin="none" data-splitout="none" data-responsive_offset="on" data-end="bytrigger" data-textAlign="center" data-lasttriggerstate="reset" style="z-index: 11; min-width: 1000px; max-width: 1000px; white-space: normal;text-align:center;">
                                 We harness the power of our cutting-edge in-house workflows to craft bespoke media tailored to our clients' unique specifications. Our innovative approach combines advanced technology with creative vision, enabling us to deliver high-quality, customized content that stands out in a crowded digital landscape. From concept to completion, we ensure each project is executed with precision and artistry, reflecting our commitment to excellence and our clients' vision. Whether it's for stock photography, dynamic videos, or interactive digital experiences, our expertise in AI-driven media production guarantees results that are both visually stunning and strategically impactful.
                                 <br/>
+                                    <br/>
+                                Bradley Ledger - Founder
+                           <br/>
+                                    <br/>
                                 <br/><a href="mailto:intoartwork@gmail.com" class="onepager-link">LET'S CONNECT! - IntoArtwork@gmail.com</a>
                             </div>
 
@@ -570,45 +578,69 @@ tpj(document).ready(function() {
         });
     }
 }); /*ready*/
-        
 document.addEventListener('DOMContentLoaded', function () {
     const header = document.querySelector('.transparent-header');
-    const slider = document.getElementById('rev_slider_202_1_wrapper'); // Slider wrapper as the event delegation parent
-    let isHeaderVisible = true; // Track header visibility
+    let isHeaderVisible = false; // Header starts as hidden
+
+    // Initialize header as hidden
+    header.style.display = 'none';
 
     // Function to toggle header visibility
-    function toggleHeader() {
-        isHeaderVisible = !isHeaderVisible;
-        header.style.display = isHeaderVisible ? '' : 'none';
+    function toggleHeaderVisibility() {
+        isHeaderVisible = !isHeaderVisible; // Toggle visibility state
+        header.style.display = isHeaderVisible ? '' : 'none'; // Apply display change
     }
 
-    // Event delegation from the slider to favicon and close buttons
+    // Function to make header visible only if it's currently hidden
+    function makeHeaderVisible() {
+        if (!isHeaderVisible) { // Check if header is hidden
+            isHeaderVisible = true; // Change state to visible
+            header.style.display = ''; // Change display to make header visible
+        }
+    }
+
+    // Function to hide the header
+    function hideHeader() {
+        if (isHeaderVisible) {
+            isHeaderVisible = false;
+            header.style.display = 'none'; // Hide the header
+        }
+    }
+
+    // Event delegation from the slider to specific buttons that toggle header visibility
+    const slider = document.getElementById('rev_slider_202_1_wrapper');
     slider.addEventListener('click', function (e) {
         const clickedElement = e.target.closest('.Concept-MoreBtn img, .Concept-LessBtn');
         if (clickedElement) {
-            toggleHeader();
+            toggleHeaderVisibility();
         }
     });
 
-    // Ensure header visibility on slide change
-    const revapi202 = tpj("#rev_slider_202_1");
-
-    revapi202.on("newterm1.slide.onchange", function (e, data) {
-        // Ensure the header visibility is consistent with the current state
-        header.style.display = isHeaderVisible ? '' : 'none';
+    // Add event listener to hide header when specific buttons are clicked
+    slider.addEventListener('click', function (e) {
+        const moreBtn = e.target.closest('.Concept-MoreBtn.rev-btn.rs-parallaxlevel-2');
+        if (moreBtn) {
+            hideHeader(); // Hide the header when this button is clicked
+        }
     });
 
-    // Add touchstart event listener to arrows to prevent disappearing
+    // Handle header visibility on slide change to ensure it stays visible
+    const revapi202 = tpj("#rev_slider_202_1");
+    revapi202.on("newterm1.slide.onchange", function (e, data) {
+        // Always ensure the header is visible on slide change
+        makeHeaderVisible();
+    });
+
+    // Add click event listener to arrows to make the header visible if it is hidden
     const leftArrow = document.querySelector('.tp-leftarrow');
     const rightArrow = document.querySelector('.tp-rightarrow');
-
     [leftArrow, rightArrow].forEach(arrow => {
-        arrow.addEventListener('touchstart', function() {
+        arrow.addEventListener('click', makeHeaderVisible); // Only makes the header visible if hidden
+        arrow.addEventListener('touchstart', () => {
             arrow.style.opacity = 1; // Ensure arrow is fully visible on touch
         });
     });
 });
-        
     </script>
 
 </body>

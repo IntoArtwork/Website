@@ -2249,39 +2249,35 @@ var SEMICOLON = SEMICOLON || {};
 		}, 250);
 	});
 
-// Document Ready
 document.addEventListener('DOMContentLoaded', function () {
     const header = document.querySelector('.transparent-header');
     const slider = document.getElementById('rev_slider_202_1_wrapper'); // Slider wrapper as the event delegation parent
     let isHeaderVisible = true; // Track header visibility
 
-    // Function to toggle header visibility
-    function toggleHeader() {
-        // Log current state before toggling
-        console.log('Current header visibility:', isHeaderVisible);
-        
-        // Toggle visibility
-        isHeaderVisible = !isHeaderVisible;
+    // Function to set header visibility
+    function setHeaderVisibility(visible) {
+        isHeaderVisible = visible;
         header.style.display = isHeaderVisible ? '' : 'none';
-        
-        // Log new state after toggling
-        console.log('Header visibility changed to:', isHeaderVisible);
+        console.log('Header visibility set to:', isHeaderVisible);
     }
 
     // Event listener on slider for handling clicks
     slider.addEventListener('click', function (e) {
         // Identify click target
         const clickedElement = e.target.closest('.Concept-MoreBtn img, .Concept-LessBtn');
-        
         if (clickedElement) {
-            // Perform visibility toggle
-            toggleHeader();
+            // Make header visible
+            setHeaderVisibility(true);
         }
     });
 
     // Enhance arrow button interactions
     const arrows = document.querySelectorAll('.tp-leftarrow, .tp-rightarrow');
     arrows.forEach(arrow => {
+        arrow.addEventListener('click', () => {
+            // Immediately make header visible on arrow clicks
+            setHeaderVisibility(true);
+        });
         arrow.addEventListener('touchstart', () => {
             // Ensure arrow is fully visible on touch
             arrow.style.opacity = 1;
@@ -2289,6 +2285,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Debug function to manually toggle header for testing
-    window.toggleHeader = toggleHeader;
+    window.setHeaderVisibility = setHeaderVisibility;
 });
+    
+    
 })(jQuery);
