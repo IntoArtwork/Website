@@ -260,7 +260,7 @@
     }
 }
    
-        .tp-leftarrow, .tp-rightarrow {
+       .tp-leftarrow, .tp-rightarrow {
             width: 50px;
             height: 50px;
             background-size: contain;
@@ -285,6 +285,11 @@
         .tp-leftarrow:hover, .tp-rightarrow:hover {
             background-color: transparent !important;
             background-image: url('include/rs-plugin/demos/assets/images/arrowl.png') !important;
+        }
+
+        /* Hide the icon inside the arrow */
+        .tp-leftarrow:before, .tp-rightarrow:before {
+            content: none !important;
         }
         
              .signature {
